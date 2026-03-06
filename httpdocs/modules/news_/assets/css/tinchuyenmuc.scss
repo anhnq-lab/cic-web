@@ -1,0 +1,348 @@
+body{
+	.tinchuyenmuc{
+		.section1{
+			margin-top: 45px;
+			@media (max-width: 425px) {
+				margin-top: 0;
+			}
+			
+			.bkr{
+				font-size: 28px;
+				color: #40b5e6;
+				margin-bottom: 10px;
+			}
+			.chuyenmuc1{
+				text-decoration: none;
+				font-size: 14px;
+				color: #777777;
+				display: inline-block;
+			}
+		}
+		.section2{
+			.section2_left{
+				@media (max-width: 767px) {
+					position: unset;
+					display: none;
+				}
+				padding-top: 14px;
+				.section2_left1{
+					margin-top: 20px;
+					ul{	
+						padding-left: 0px;
+						list-style: none;
+
+						li{
+							border: 1px solid #ffffff;
+							padding: 10px 10px 10px 25px;
+							background: #eeeeee;
+							&:hover, &.active{
+								background: #2aaee4;
+								.muiten{
+									color: #ffffff;
+									background: #2aaee4 url(/images/logos/tinchuyenmuc10.png) no-repeat right 6px top 3px;
+									@media (max-width: 767px) {
+										background: #2aaee4 url(/images/logos/tinchuyenmuc10.png) no-repeat right 6px top 1px;
+
+									}
+								}
+							}
+							a{
+								font-size: 16px;
+								color: #333333;
+								text-decoration: none;
+							}
+							.muiten{
+								padding-right: 25px;
+								display: block;
+								// background: url(../img/imgtinchuyenmuc/tinchuyenmuc10.png)no-repeat right 6px top 3px;
+							}
+						}
+					}
+				}
+				.section2_left2{
+					margin-bottom: 15px;
+					margin-top: 35px;
+					strong{
+					    padding: 10px 127px 10px 20px;
+						border-left: 3px solid #2aaee4;
+						background: #eeeeee;
+						font-size: 18px;
+						color: #333333;
+					}
+				}
+				.section2_left3{
+					text-decoration: none;
+					padding: 15px 0px;
+					border-bottom: 1px solid #eeeeee;
+					display: flex;
+					img{
+						margin-right: 10px;
+						width: 100px;
+						height: 60px;
+					}
+					p{
+						color: #333333;
+						text-decoration: none;
+					}
+
+				}
+			}
+			.section2_right{
+				@media (max-width: 767px) {
+					position: unset;
+				}
+				.section2_right1{
+					padding-bottom: 20px;
+    				padding-top: 20px;
+					display: block;
+					clear: both;
+					text-decoration: none;
+					border-bottom: 1px solid #eeeeee;
+					&:first-child{
+						padding-top: 35px;
+						@media (max-width: 767px) {
+							padding-top: 20px;
+						}
+					}
+					img{
+						margin-right: 20px;
+						width: 35%;
+						float: left;
+						@media (min-width: 1023px) {
+							//width: 35%;
+						}
+					}
+					.img1{
+						width: auto;
+					}
+					.section2_right1_1{
+						.title{
+							color: #333333;
+							line-height: 25px;
+							font-size: 18px;
+							font-weight: bold;
+							height: 50px;
+							margin-top: 0;
+							@media (max-width: 767px) {
+								height: auto;
+								display: -webkit-box;
+								-webkit-box-orient: vertical;
+								-webkit-line-clamp: 2;
+								text-overflow: ellipsis;
+								overflow: hidden;
+							}
+							@media  (max-width: 1199px) and(min-width: 1023px){
+								height: auto;
+								display: -webkit-box;
+								-webkit-box-orient: vertical;
+								-webkit-line-clamp: 2;
+								text-overflow: ellipsis;
+								overflow: hidden;
+							}
+						}
+						.title_1{
+							height: auto;
+							@media (max-width: 767px) {
+								font-size: 15px;
+								margin-bottom: 0;
+							}
+						}
+
+						.time {
+							color: #333333;
+							padding: 5px 0px 0px 345px;
+							background: url(/images/logos/tinchuyenmuc11.png) no-repeat left 322px top 8px;
+							font-size: 14px;
+							@media (max-width: 425px) {
+								padding: 0px 0px 0px 220px!important;
+								background: url(/images/logos/tinchuyenmuc11.png) no-repeat left 205px top 2px!important;
+							}
+						}
+						.time_1{
+							padding-left: 120px;
+							padding-top: 0;
+							background: url(/images/logos/tinchuyenmuc11.png) no-repeat left 100px top 3px;
+							@media (max-width: 425px) {
+								padding-left: 115px!important;
+								background: url(/images/logos/tinchuyenmuc11.png) no-repeat left 97px top 2px !important;
+							}
+						}
+						.mota{
+							color: #333333;
+							text-decoration: none;
+							font-size: 14px;
+							line-height: 25px;
+							height: 50px;
+						}
+					}
+				}
+				.ct{
+					position: relative;
+					@media (max-width: 767px) {
+						height: 105px;
+					}
+					.d{
+						position: absolute;
+						right: 0;
+						bottom: 10%;
+					}
+					@media (max-width: 767px) {
+						.img1{
+							width: auto!important;
+						}
+					}
+				}
+				.section2_them{
+					padding-bottom: 65px;
+				}
+				.section2_right2{
+					margin-bottom: 25px;
+					margin-top: 40px;
+					text-align: center;
+					.taithem{
+						border-radius: 5px;
+						background: #40b5e6 url(/images/logos/tinchuyenmuc12.png) no-repeat right 20px top 14px;
+						text-decoration: none;
+					    padding: 12px 45px 12px 20px;
+						font-size: 16px;
+						color: #ffffff;
+					}
+				}
+			}
+		}
+		@media (max-width: 1024px){
+			.section1{
+				p{font-size: 26px;}
+			}
+			.section2{
+				.section2_left{
+					.section2_left1{
+						ul{
+							li{
+								.muiten{
+									padding-right: auto;
+								}
+								a{
+									line-height: 15px;
+									font-size: 14px;
+								}
+							}
+						}
+					}
+					.section2_left2{
+						strong{
+							 font-size: 16px;
+							 padding: 10px 89px 10px 19px;
+						}
+					}
+					.section2_left3{
+						// img{
+						// 	width: 100%;
+						// }
+						p{
+							font-size: 12px;
+						}
+					}
+				}
+				.section2_right{
+					.section2_right1{
+						img{
+							margin-right: 15px;
+						}
+						.section2_right1_1{
+							strong{
+								font-size: 16px;
+							}
+							p{
+								font-size: 13px;
+								line-height: 18px;
+							}
+							@media (max-width: 768px){
+								width: 100%;
+							}
+						}
+					}
+				}
+			}
+		}
+		@media (max-width: 768px){
+			.section1{
+				a{font-size: 14px;}
+				p{font-size: 22px;}
+			}
+			.section2{
+				.section2_left{
+					.section2_left1{
+						ul{
+							display: none;
+							li{
+								width: 30%;
+								.muiten{
+									 background: url(../img/imgtinchuyenmuc/tinchuyenmuc10.png) no-repeat right 0px top 0px;
+								}
+								a{
+								font-size: 12px;
+								}
+							}
+							.sort1{
+								width: 100%;
+							}
+						}
+						.sort{
+							display: block;
+						}
+					}
+					.section2_left2{
+						strong{
+							font-size: 14px;
+							display: block;
+						}
+					}
+				}
+				.section2_right{
+					.section2_right1{
+						    padding-bottom: 10px;
+    						padding-top: 20px;
+						img{
+							width: 50%;
+						}
+						.section2_right1_1{
+							strong{
+								font-size: 14px;
+							}
+							p{
+								font-size: 12px;
+							}
+							.time{
+								background: url(../img/imgtinchuyenmuc/tinchuyenmuc11.png) no-repeat left 216px top 15px;
+    							padding-left: 233px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@media all and (max-width: 767px) and (min-width: 600px) {
+	.section2_right{
+		.section2_right1{
+			img{
+				width: auto!important;
+			}
+
+			.section2_right1_1{
+				strong{
+					font-size: 14px;
+				}
+				p{
+					font-size: 12px;
+				}
+				.time{
+					background: url(../img/imgtinchuyenmuc/tinchuyenmuc11.png) no-repeat left 216px top 15px;
+					padding-left: 233px;
+				}
+			}
+		}
+	}
+}

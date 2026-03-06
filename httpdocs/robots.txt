@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /index.php
+Disallow: /android/
+Disallow: /vi/dica/
+Disallow: /vi/vidica/
+Disallow: /wp-content/
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+
+User-agent: facebookexternalhit
+Allow: /
+
+Sitemap: https://www.cic.com.vn/sitemap.xml

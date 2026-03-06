@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="utf-8"/>
+<title>Flipbook CIC</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/turn.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.12.313/pdf.min.js"></script>
+<style>
+    body {
+      margin: 0;
+      background: #e8f0f8;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+    #flipbook-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #flipbook {
+      border: 6px solid #76b4d6;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      position: relative;
+      transform-origin: center top;
+      transition: transform 0.3s ease;
+    }
+    .page {
+      background: white;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+    }
+    #book-fold {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.06), rgba(0,0,0,0));
+      z-index: 100;
+      pointer-events: none;
+    }
+    .arrow-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 28px;
+      color: #555;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 0 6px rgba(0,0,0,0.15);
+    }
+    #prev-page { left: 10px; }
+    #next-page { right: 10px; }
+    .control-bar {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: white;
+      border-radius: 6px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      padding: 6px 12px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 16px;
+      z-index: 1001;
+    }
+    .control-bar i {
+      cursor: pointer;
+      color: #555;
+    }
+    .control-bar i:hover {
+      color: #0077b6;
+    }
+    #loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 20px;
+      color: #333;
+      font-family: sans-serif;
+      z-index: 2000;
+    }
+  </style>
+</head>
+<body>
+<div id="loading">Đang tải tài liệu... 0%</div>
+<div id="flipbook-wrapper">
+<div id="flipbook" style="visibility: hidden;">
+<div id="book-fold"></div>
+</div>
+</div>
+<div class="arrow-nav" id="prev-page"><i class="fas fa-chevron-left"></i></div>
+<div class="arrow-nav" id="next-page"><i class="fas fa-chevron-right"></i></div>
+<div class="control-bar">
+<span id="page-info">1/1</span>
+<i class="fas fa-search-plus" id="zoom-in"></i>
+<i class="fas fa-search-minus" id="zoom-out"></i>
+<i class="fas fa-expand" onclick="document.documentElement.requestFullscreen()"></i>
+<i class="fas fa-print" onclick="window.print()"></i>
+</div>
+<script>
+  function getPDFUrlFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('pdf') || 'http://dskh.cic.com.vn/flipbooks/CICProfile2024Final.pdf';
+}
+const url = getPDFUrlFromQuery();
+  const container = document.getElementById("flipbook");
+  let canvasWidth = 0, canvasHeight = 0;
+  let zoomFactor = 1;
+  const loadingText = document.getElementById("loading");
+
+  pdfjsLib.getDocument(url).promise.then(async pdf => {
+    const total = pdf.numPages;
+    const maxWidth = window.innerWidth * 0.9;
+const maxHeight = window.innerHeight * 0.85;
+    let scaleSet = false;
+let isLandscape = false;
+
+    for (let i = 1; i <= total; i++) {
+      const page = await pdf.getPage(i);
+
+      let scale;
+      if (!scaleSet) {
+        const viewport = page.getViewport({ scale: 1 });
+        isLandscape = viewport.width > viewport.height;
+      const ratioW = maxWidth / (viewport.width * (isLandscape ? 1 : 2));
+      const ratioH = maxHeight / viewport.height;
+      scale = Math.min(ratioW * 1.15, ratioH);
+        scaleSet = scale;
+      } else {
+        scale = scaleSet;
+      }
+
+      const viewport = page.getViewport({ scale });
+      const canvas = document.createElement("canvas");
+      const context = canvas.getContext("2d");
+
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      canvasWidth = canvas.width;
+      canvasHeight = canvas.height;
+
+      await page.render({ canvasContext: context, viewport }).promise;
+
+      const pageDiv = document.createElement("div");
+      pageDiv.className = "page";
+      pageDiv.style.width = canvas.width + "px";
+      pageDiv.style.height = canvas.height + "px";
+      pageDiv.appendChild(canvas);
+      container.appendChild(pageDiv);
+
+      const percent = Math.floor((i / total) * 100);
+      loadingText.textContent = 'Đang tải tài liệu... ' + percent + '%';
+
+      if (i === total) {
+        const blank = document.createElement("div");
+        blank.className = "page";
+        blank.style.width = canvasWidth + "px";
+        blank.style.height = canvasHeight + "px";
+        $('#flipbook').prepend(blank);
+
+        setTimeout(() => {
+          loadingText.style.display = 'none';
+          container.style.visibility = 'visible';
+
+          $('#flipbook').turn({
+            duration: 1200,
+            width: canvasWidth * (isLandscape ? 1 : 2),
+            height: canvasHeight,
+            autoCenter: true,
+            elevation: 50,
+            display: isLandscape ? 'single' : 'double',
+            when: {
+              turned: function(event, page) {
+                const totalPages = $('#flipbook').turn('pages');
+                document.getElementById('page-info').textContent = page + "/" + totalPages;
+              }
+            }
+          });
+
+          $('#next-page').click(() => $('#flipbook').turn('next'));
+          $('#prev-page').click(() => $('#flipbook').turn('previous'));
+          document.getElementById('page-info').textContent = "1/" + $('#flipbook').turn('pages');
+
+          document.getElementById('zoom-in').onclick = () => adjustZoom(1.1);
+          document.getElementById('zoom-out').onclick = () => adjustZoom(0.9);
+
+          // Lật sang trang 2 ngay sau khi tải xong
+          setTimeout(() => $('#flipbook').turn('next'), 300);
+        }, 100);
+      }
+    }
+  }).catch(error => {
+    loadingText.textContent = 'Không thể tải tài liệu: ' + error.message;
+    console.error("Lỗi khi tải PDF:", error);
+  });
+
+  function adjustZoom(factor) {
+    zoomFactor *= factor;
+    const flipbook = document.getElementById('flipbook');
+    flipbook.style.transform = `scale(${zoomFactor})`;
+    flipbook.style.transformOrigin = 'center top';
+  }
+</script>
+</body>
+</html>

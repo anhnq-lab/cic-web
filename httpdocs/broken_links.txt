@@ -1,0 +1,10 @@
+https://www.cic.com.vn/javascrip:void(0) ( parent page: https://www.cic.com.vn/ )
+https://www.cic.com.vn/vi ( parent page: https://www.cic.com.vn/tu-van-bim-s5.html )
+https://www.cic.com.vn/san-pham/javascrip:void(0) ( parent page: https://www.cic.com.vn/san-pham/etabs-p78.html )
+https://www.cic.com.vn/san-pham/etabs ( parent page: https://www.cic.com.vn/san-pham/rdw-dua-tcvn-vao-cac-chuong-trinh-tinh-ket-cau-nuoc-ngoai-p57.html )
+https://www.cic.com.vn/Huong%20dan%20su%20dung%20DSAP/Thanh_cong_cu_ho_tro_do_hoa.htm ( parent page: https://www.cic.com.vn/san-pham/vinasaspro-p204.html )
+https://www.cic.com.vn/testfloori/ ( parent page: https://www.cic.com.vn/ung-dung-thuc-te-ao-tang-cuong-ar-vao-hoat-dong-kinh-doanh-vat-lieu-trang-tri-hoan-thien-n585.html )
+https://www.cic.com.vn/tim-kiem/javascrip:void(0) ( parent page: https://www.cic.com.vn/tim-kiem/Ph%E1%BA%A7n+m%E1%BB%81m+x%C3%A2y+d%E1%BB%B1ng.html )
+https://www.cic.com.vn/products/javascrip:void(0) ( parent page: https://www.cic.com.vn/products/vinasaspro-pe204.html )
+https://www.cic.com.vn/search/javascrip:void(0) ( parent page: https://www.cic.com.vn/search/VinaSAS.html )
+ 

@@ -1,0 +1,2 @@
+114.119.134.192 - - [05/Aug/2022:08:01:49 +0700] "GET /robots.txt HTTP/1.0" 404 567 "-" "Mozilla/5.0 (compatible;PetalBot;+https://webmaster.petalsearch.com/site/petalbot)"
+149.202.191.30 - - [05/Aug/2022:14:17:25 +0700] "GET / HTTP/1.0" 200 456 "http://autocad.cic.com.vn/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"

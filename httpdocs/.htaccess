@@ -1,0 +1,206 @@
+RewriteEngine on
+
+# ============================================================
+# BLOCK SEO SPAM URLs - Trả về 410 Gone để Google xóa index
+# ============================================================
+RewriteRule ^android/ - [G,L]
+RewriteRule ^vi/dica/ - [G,L]
+RewriteRule ^vi/vidica/ - [G,L]
+RewriteRule ^wp-content/ - [G,L]
+RewriteRule ^wp-admin/ - [G,L]
+RewriteRule ^wp-includes/ - [G,L]
+# ============================================================
+
+RewriteCond %{HTTP_HOST} ^cic.com.vn [NC]
+RewriteCond %{REQUEST_METHOD} !POST [NC]
+RewriteRule ^(.*)$ https://www.cic.com.vn/$1 [L,R=301,NC]
+
+RewriteCond %{HTTPS} off
+RewriteRule ^.*$ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+
+#RewriteEngine On
+#RewriteCond %{HTTPS} off
+#RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R=301,L]
+
+#RewriteCond %{HTTP_HOST} ^www\.(.*)
+#RewriteRule (.*) http://%1/$1 [R=301,L]
+
+AddType text/x-component .htc
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+
+#RewriteCond %{REQUEST_URI} !^/index.php
+#RewriteCond %{REQUEST_URI} (/|\.php|\.html|\.htm|\.feed|\.pdf|\.raw|/[^.]*)$  [NC]
+#RewriteRule (.*) index.php
+
+RewriteRule ^(index.php|index.html)$ index.php?module=home&view=home&Itemid=1lang=vi[L]
+RewriteRule ^&tmpl=1$ index.php?module=home&view=home&Itemid=1&lang=vi[L]
+RewriteRule ^$ index.php?module=home&view=home&Itemid=1&lang=vi [L]
+
+RewriteRule ^$ index.php?&lang=vi [L]
+RewriteRule ^en$ index.php?module=home&view=home&Itemid=1&lang=en [L]
+
+#--------------------------------new---------------------------------------------------------------------------------------
+RewriteRule ^([^/]*)-cn([0-9]*)(-page([0-9]*)).html$ index.php?module=news&view=cat&ccode=$1&id=$2&Itemid=3&page=$4&lang=vi&%{QUERY_STRING} [L]
+RewriteRule ^([^/]*)-cn([0-9]*).html$ index.php?module=news&view=cat&ccode=$1&id=$2&Itemid=3&lang=vi&%{QUERY_STRING} [L]
+
+RewriteRule ^([^/]*)-n([0-9]*).html$ index.php?module=news&view=news&code=$1&id=$2&Itemid=4&lang=vi [L]
+
+RewriteRule ^amp/([^/]*)-n([0-9]*).html$ index.php?module=news&view=amp_news&code=$1&id=$2&Itemid=50&lang=vi [L]
+
+RewriteRule ^tin-tuc(-page([0-9]*)).html$ index.php?module=news&view=home&ccode=$1&Itemid=2&page=$2&lang=vi [L]
+RewriteRule ^tin-tuc.html(.*)$ index.php?module=news&view=home&Itemid=2&lang=vi&$1 [L]
+
+#english
+RewriteRule ^([^/]*)-cne([0-9]*)(-page([0-9]*)).html$ index.php?module=news&view=cat&ccode=$1&id=$2&Itemid=3&page=$4&lang=en&%{QUERY_STRING} [L]
+RewriteRule ^([^/]*)-cne([0-9]*).html$ index.php?module=news&view=cat&ccode=$1&id=$2&Itemid=3&lang=en&%{QUERY_STRING} [L]
+
+RewriteRule ^([^/]*)-ne([0-9]*).html$ index.php?module=news&view=news&code=$1&id=$2&Itemid=4&lang=en [L]
+
+RewriteRule ^amp/([^/]*)-ne([0-9]*).html$ index.php?module=news&view=amp_news&code=$1&id=$2&Itemid=50&lang=en [L]
+
+RewriteRule ^news(-page([0-9]*)).html$ index.php?module=news&view=home&ccode=$1&Itemid=2&page=$2&lang=en [L]
+RewriteRule ^news.html(.*)$ index.php?module=news&view=home&Itemid=2&lang=en&$1 [L]
+
+
+#--------------------------------event---------------------------------------------------------------------------------------
+
+RewriteRule ^([^/]*)-k([0-9]*).html$ index.php?module=event&view=event&code=$1&id=$2&Itemid=34&lang=vi [L]
+
+RewriteRule ^su-kien(-page([0-9]*)).html$ index.php?module=event&view=home&ccode=$1&Itemid=33&page=$2&lang=vi [L]
+RewriteRule ^su-kien.html(.*)$ index.php?module=event&view=home&Itemid=33&lang=vi&$1 [L]
+
+
+
+#english
+RewriteRule ^([^/]*)-ke([0-9]*).html$ index.php?module=event&view=event&code=$1&id=$2&Itemid=34&lang=en [L]
+
+RewriteRule ^event(-page([0-9]*)).html$ index.php?module=event&view=home&ccode=$1&Itemid=33&page=$2&lang=en [L]
+RewriteRule ^event.html(.*)$ index.php?module=event&view=home&Itemid=33&lang=en&$1 [L]
+
+#-------------------------------------------services-------------------------------------------------------------------------------------------
+
+RewriteRule ^([^/]*)-s([0-9]*).html$ index.php?module=services&view=service&code=$1&id=$2&Itemid=40&lang=vi [L]
+#english
+RewriteRule ^([^/]*)-se([0-9]*).html$ index.php?module=services&view=service&code=$1&id=$2&Itemid=40&lang=en [L]
+
+
+#-------------------------------------------images-------------------------------------------------------------------------------------------
+
+RewriteRule ^thu-vien-anh.html$ index.php?module=images&view=img&Itemid=50&lang=vi [L]
+RewriteRule ^photo-library.html$ index.php?module=images&view=img&Itemid=50&lang=en [L]
+
+#-------------------------------------------products-------------------------------------------------------------------------------------------
+RewriteRule ^([^/]*)-cp([0-9]*)(-page([0-9]*)).html(.*) index.php?module=products&view=cat&ccode=$1&cid=$2&Itemid=9&page=$4&$5&lang=vi&%{QUERY_STRING}  [L]
+RewriteRule ^([^/]*)-cp([0-9]*).html(.*) index.php?module=products&view=cat&ccode=$1&cid=$2&Itemid=9&$3&lang=vi&%{QUERY_STRING}  [L]
+
+RewriteRule ^san-pham/([^/]*)-p([0-9]*).html$ index.php?module=products&view=product&code=$1&id=$2&Itemid=10&lang=vi [L]
+
+RewriteRule ^amp/([^/]*)-p([0-9]*).html$ index.php?module=products&view=amp_product&code=$1&id=$2&Itemid=50&lang=vi [L]
+
+RewriteRule ^san-pham(-page([0-9]*))?.html(.*) index.php?module=products&view=home&page=$2&Itemid=11&lang=vi&$3&%{QUERY_STRING}  [L]
+RewriteRule ^danh-sach-san-pham(-page([0-9]*))?.html(.*) index.php?module=products&view=home&raw=1&task=product_list&page=$2&Itemid=11&lang=vi&$3&%{QUERY_STRING}  [L]
+
+#english
+RewriteRule ^([^/]*)-cpe([0-9]*)(-page([0-9]*)).html(.*) index.php?module=products&view=cat&ccode=$1&cid=$2&Itemid=9&page=$4&$5&lang=en&%{QUERY_STRING}  [L]
+RewriteRule ^([^/]*)-cpe([0-9]*).html(.*) index.php?module=products&view=cat&ccode=$1&cid=$2&Itemid=9&$3&lang=en&%{QUERY_STRING}  [L]
+
+RewriteRule ^products/([^/]*)-pe([0-9]*).html$ index.php?module=products&view=product&code=$1&id=$2&Itemid=10&lang=en [L]
+
+RewriteRule ^amp/([^/]*)-pe([0-9]*).html$ index.php?module=products&view=amp_product&code=$1&id=$2&Itemid=50&lang=en [L]
+
+RewriteRule ^products(-page([0-9]*))?.html(.*) index.php?module=products&view=home&page=$2&Itemid=11&lang=en&$3&%{QUERY_STRING}  [L]
+RewriteRule ^products-list(-page([0-9]*))?.html(.*) index.php?module=products&view=home&raw=1&task=product_list&page=$2&Itemid=11&lang=en&$3&%{QUERY_STRING}  [L]
+#-----------------------------------contents--------------------------------------------------------------------
+RewriteRule ^([^/]*)-cc([0-9]*)(-page([0-9]*)).html$ index.php?module=contents&view=cat&ccode=$1&id=$2&page=$4&Itemid=7 [L]
+RewriteRule ^([^/]*)-cc([0-9]*).html$ index.php?module=contents&view=cat&ccode=$1&id=$2&Itemid=7 [L]
+RewriteRule ^([^/]*)-c([0-9]*).html$ index.php?module=contents&view=content&code=$1&id=$2&Itemid=8&lang=vi  [L]
+RewriteRule ^([^/]*)-ce([0-9]*).html$ index.php?module=contents&view=content&code=$1&id=$2&Itemid=8&lang=en  [L]
+
+#--------------------------------------search--------------------------------------------------------
+RewriteRule ^tim-kiem/([^/]*)(-page([0-9]*)).html(.*) index.php?module=search&view=search&keyword=$1&Itemid=20&page=$3&lang=vi [L]
+RewriteRule ^tim-kiem/([^/]*).html(.*) index.php?module=search&view=search&keyword=$1&Itemid=20&lang=vi [L]
+
+RewriteRule ^search/([^/]*)(-page([0-9]*)).html(.*) index.php?module=search&view=search&keyword=$1&Itemid=20&page=$3&lang=en [L]
+RewriteRule ^search/([^/]*).html(.*) index.php?module=search&view=search&keyword=$1&Itemid=20&lang=en [L]
+
+#--------------------contact --------------------------------------------------------------------------------------
+RewriteRule ^lien-he.html$ index.php?module=contact&Itemid=14&lang=vi [L]
+RewriteRule ^contact.html$ index.php?module=contact&Itemid=14&lang=en [L]
+
+#----------------auto delete cache ---------------------------------------------------------------------------------------------
+RewriteRule ^delete-cache.html index.php?module=cache&Itemid=22 [L]
+#----------------phan mem trong nuoc
+redirect 301 /phan-mem-du-toan-escon-15-p67.html https://dutoan.cic.com.vn/phan-mem-du-toan-escon.html
+redirect 301 /san-pham/phan-mem-du-toan-escon-phien-ban-15 https://dutoan.cic.com.vn/phan-mem-du-toan-escon.html
+redirect 301 /san-pham/phan-mem-du-toan-escon-2012 https://dutoan.cic.com.vn/phan-mem-du-toan-escon.html
+redirect 301 /san-pham/kiw-phan-mem-tinh-toan-thiet-ke-khung-thep-tien-che https://dutoan.cic.com.vn/phan-mem-tinh-toan-thiet-ke-khung-thep-tien-che.html
+redirect 301 /kiw-phan-mem-tinh-toan-thiet-ke-khung-thep-tien-che-p65.html https://dutoan.cic.com.vn/phan-mem-tinh-toan-thiet-ke-khung-thep-tien-che.html
+redirect 301 /rdw-dua-tcvn-vao-cac-chuong-trinh-tinh-ket-cau-nuoc-ngoai-p57.html https://dutoan.cic.com.vn/phan-mem-dua-tcvn-vao-cac-chuong-trinh-tinh-ket-cau-nuoc-ngoai-rdw.html
+redirect 301 /san-pham/rdw-dua-tcvn-vao-cac-chuong-trinh-tinh-ket-cau-nuoc-ngoai https://dutoan.cic.com.vn/phan-mem-dua-tcvn-vao-cac-chuong-trinh-tinh-ket-cau-nuoc-ngoai-rdw.html
+redirect 301 /san-pham/rdw-dua-tcvn-vao-cac-chuong-trinh-tinh-ket-cau-nuoc-ngoai https://dutoan.cic.com.vn/phan-mem-dua-tcvn-vao-cac-chuong-trinh-tinh-ket-cau-nuoc-ngoai-rdw.html
+redirect 301 /vinasas-phan-mem-tinh-toan-thiet-ke-khung-hon-hop-1-p58.html https://dutoan.cic.com.vn/phan-mem-phan-tich-va-thiet-ke-khung-khong-gian-bctc-vinasas.html
+redirect 301 /san-pham/vinasas-phan-mem-tinh-toan-thiet-ke-khung-hon-hop https://dutoan.cic.com.vn/phan-mem-phan-tich-va-thiet-ke-khung-khong-gian-bctc-vinasas.html
+redirect 301 /vinasaspro-p204.html https://dutoan.cic.com.vn/phan-mem-phan-tich-va-thiet-ke-khung-khong-gian-bctc-vinasas.html
+redirect 301 /san-pham/sumac-phan-mem-tinh-toan-san-nen-va-mo-hinh-hoa-be-mat-dia-hinh https://dutoan.cic.com.vn/sumac-phan-mem-tinh-toan-san-nen.html
+redirect 301 /sumac-p72.html https://dutoan.cic.com.vn/sumac-phan-mem-tinh-toan-san-nen.html
+redirect 301 /san-pham/stcad-ho-tro-ve-thiet-ke-xay-dung-va-boc-tien-luong https://dutoan.cic.com.vn/phan-mem-ho-tro-ve-thiet-ke-xay-dung-va-boc-tien-luong-stcad.html
+redirect 301 /stcad-ho-tro-ve-thiet-ke-xay-dung-va-boc-tien-luong-p61.html https://dutoan.cic.com.vn/phan-mem-ho-tro-ve-thiet-ke-xay-dung-va-boc-tien-luong-stcad.html
+redirect 301 /san-pham/mdw-phan-mem-tinh-toan-mong-don https://dutoan.cic.com.vn/phan-mem-phan-tich-thiet-ke-mong-don.html
+redirect 301 /mdw-p205.html https://dutoan.cic.com.vn/phan-mem-phan-tich-thiet-ke-mong-don.html
+redirect 301 /san-pham/mcw-phan-mem-tinh-toan-mong-coc https://dutoan.cic.com.vn/phan-mem-phan-tich-thiet-ke-mong-coc.html
+redirect 301 /mcw-phan-mem-tinh-toan-mong-coc-p60.html https://dutoan.cic.com.vn/phan-mem-phan-tich-thiet-ke-mong-coc.html
+redirect 301 /mbw-phan-mem-tinh-mong-bang-p59.html https://dutoan.cic.com.vn/phan-mem-phan-tich-thiet-ke-mong-bang.html
+redirect 301 /san-pham/mbw-phan-mem-tinh-mong-bang https://dutoan.cic.com.vn/phan-mem-phan-tich-thiet-ke-mong-bang.html
+redirect 301 /kpw-p207.html https://dutoan.cic.com.vn/phan-mem-tinh-toan-thiet-ke-khung-phang.html
+redirect 301 /kpw-phan-mem-tinh-toan-thiet-ke-khung-phang https://dutoan.cic.com.vn/phan-mem-tinh-toan-thiet-ke-khung-phang.html
+redirect 301 /cictkt-p206.html https://dutoan.cic.com.vn/phan-mem-thong-ke-thep.html
+redirect 301 /phan-mem-thong-ke-thep-cictkt https://dutoan.cic.com.vn/phan-mem-thong-ke-thep.html
+redirect 301 /tienich/index.htm https://dutoan.cic.com.vn/cong-cu-ho-tro-su-dung-phan-mem.html
+Redirect 301 /forums https://dutoancic.vn/Forums
+
+#-----------------------------------forums---------------------
+
+#------------------notfound ----------------------------------------------------------------------------------------------------
+ErrorDocument 404 /404-page.html
+#RewriteRule ^404-page.html index.php?module=notfound&view=notfound&Itemid=1000 [L]
+
+
+#----------------sitemap--------------------------------------------------------------------------------------------------------
+RewriteRule ^site-map.html(.*) index.php?module=sitemap&view=sitemap&Itemid=16 [L]
+RewriteRule ^sitemap.xml$ sitemap.php [L]
+
+#-------------------rss---------------------------------------------------------------------------------------------------------
+RewriteRule ^rss.xml$ rss.php [L]
+RewriteRule ^feeds$ rss.php [L]
+
+#-----------------genarate sitemap----------------------------------------------------------------------------------------------
+RewriteRule ^genarate_sitemap.html index.php?module=sitemap_auto&view=sitemap_auto&raw=1 [L]
+
+#sitemap
+RewriteRule ^site-map.html(.*) index.php?module=sitemap&view=sitemap&Itemid=16 [L]
+RewriteRule ^sitemap.xml$ sitemap.php [L]
+
+#rss
+RewriteRule ^rss.xml$ rss.php [L]
+RewriteRule ^feeds$ rss.php [L]
+
+#genarate sitemap
+RewriteRule ^genarate_sitemap.html index.php?module=sitemap_auto&view=sitemap_auto&raw=1 [L]
+
+
+#----------------Configures the caching expiry date for browser caching of static files.
+#Initialize mod_rewrite
+RewriteEngine On
+<FilesMatch "\.(html|htm|js|css)$">
+  FileETag None
+  <IfModule mod_headers.c>
+    Header unset ETag
+    Header set Cache-Control "max-age=0, no-cache, no-store, must-revalidate"
+    Header set Pragma "no-cache"
+    Header set Expires "Wed, 12 Jan 1980 05:00:00 GMT"
+  </IfModule>
+</FilesMatch>

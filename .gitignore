@@ -1,0 +1,31 @@
+# Backup files
+*.zip
+*.bak
+*.backup
+*.exe
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temp files
+*.tmp
+*.swp
+
+# Cache directories (contains spam/malicious files)
+httpdocs/cache/
+httpdocs/tmp/
+
+# Node modules
+node_modules/
+
+# Agent directory
+.agent/

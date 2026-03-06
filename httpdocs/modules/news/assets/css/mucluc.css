@@ -1,0 +1,28 @@
+.toc-content {
+  margin-bottom: 20px;
+}
+.toc-content .title-toc-list {
+  background: #eeeeee;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  justify-content: space-between;
+}
+.toc-content .title-toc-list .title-toc {
+  font-size: 16px;
+  margin: 0;
+}
+.toc-content .title-toc-list .title-toc i {
+  margin-right: 10px;
+}
+.toc-content .list-toc {
+  display: none;
+  background: #eeeeee;
+}
+.toc-content .list-toc #toc li {
+  padding: 6px 0;
+  list-style: unset;
+}
+.toc-content .list-toc ol {
+  margin-left: 20px;
+}/*# sourceMappingURL=mucluc.css.map */

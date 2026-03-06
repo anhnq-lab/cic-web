@@ -1,0 +1,321 @@
+.products {
+  padding-top: 20px;
+  border-top: #e5e5e5 solid 1px;
+
+}
+
+.title-head {
+  margin-top: 40px;
+  @media all and (max-width: 767px) {
+    padding-left: 0;
+  }
+}
+
+.thuoctinh {
+  font-size: 14px;
+  color: #777777;
+  padding-left: 20px;
+  padding-right: 10px;
+  height: 4em;
+  overflow: hidden;
+}
+
+.khung {
+  .sp {
+    width: 100%;
+  }
+
+  .logo1 {
+    padding: 5px;
+    max-height: 42px;
+    max-width: 64px;
+  }
+}
+
+.col-md-4 {
+  padding-bottom: 20px;
+}
+
+.abc {
+  display: block;
+  padding-bottom: 20px;
+  margin-left: 15px;
+  color: #777777;
+  font-size: 14px;
+  font-weight: bold;
+  background: url(/images/logos/chitiet.png) left 0px top 2px no-repeat;
+
+  &:hover {
+    color: #269abc;
+  }
+
+  &:active {
+    color: #8080FF;
+  }
+}
+
+a.abc {
+  text-decoration: underline !important;
+
+  &:hover, &:active {
+    text-decoration: underline !important;
+  }
+}
+
+.ftuychonall, .ftuychon {
+  display: none;
+  height: 4em;
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.product {
+  .tuychon {
+    display: flex;
+    margin: 10px 15px;
+
+    .col-md-4 {
+      .btn {
+        width: 100%;
+        @media (max-width: 1199px) and (min-width: 1023px) {
+          padding: 6px;
+          font-size: 13px;
+        }
+      }
+    }
+
+    .lienhe {
+      padding-bottom: 0 !important;
+      margin: 0 2px;
+
+      .size {
+        z-index: 2000;
+
+        .size1 {
+          //background-color: #f6f6f6;
+          padding: 20px;
+          //border-radius: 25px;
+
+          .header-modal {
+            background-color: #ffffff;
+
+            .modal-header {
+              padding: 0;
+              border: none;
+              //background-color: #f6f6f6;
+              margin: 0;
+
+              .col-md-9 {
+                //background-color: #ffffff;
+                padding: 10px 10px 10px 15px;
+              }
+            }
+          }
+
+          .modal-body {
+            #btnn {
+              font-size: 16px;
+              color: #ffffff;
+              background: #2aaee4 url('/images/logos/send.png') top 5px left 12px no-repeat;
+              padding-left: 40px;
+              width: auto;
+            }
+
+            // .btn1{
+            //   width: 100%;
+            // }
+            .form-control {
+              height: 40px;
+            }
+
+            #note {
+              height: auto;
+            }
+
+            .check_capcha {
+              margin-bottom: 15px;
+
+              .form-control {
+                height: 36px;
+                width: 35%;
+                border-radius: 0;
+                display: inline-block;
+              }
+
+              a {
+                .fl-left {
+                  border: 1px solid #d3d3d3;
+                  padding-bottom: 4px;
+                }
+
+                img {
+                  margin-left: 10px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.product {
+  .modal .size {
+    width: 600px;
+    z-index: 2000;
+    @media all and (max-width: 767px) {
+      width: 90%;
+      margin: 25% auto;
+    }
+
+    .size1 {
+      padding: 20px;
+
+      .header-modal {
+        background-color: #ffffff;
+
+        .modal-header {
+          padding: 0;
+          border: none;
+          margin: 0;
+
+          .col-md-3 {
+            background-color: #ffffff;
+            padding: 10px 10px 10px 25px;
+          }
+        }
+      }
+
+      .modal-body {
+        #btnn, #btnn100 {
+          font-size: 16px;
+          color: #ffffff;
+          background: #2aaee4 url('/images/logos/send.png') top 5px left 12px no-repeat;
+          padding-left: 40px;
+        }
+
+        .form-control {
+          height: 40px;
+        }
+
+        #note {
+          height: auto;
+        }
+      }
+    }
+  }
+}
+
+.phanmem {
+  font-size: 1em;
+  color: #333333;
+  display: inline-block;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+.imgtintuc {
+  margin-top: 30px;
+
+  img {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  a {
+    margin-top: 10px;
+    color: #000000;
+    font-size: 14px;
+    font-weight: bold;
+    display: block;
+    height: 37px;
+  }
+
+  .tin {
+    margin-top: 10px;
+    color: #2aaee4;
+    font-size: 14px;
+    font-weight: normal;
+    display: inline-block;
+  }
+
+  .icon_time {
+    border-left-color: #fff;
+    border-top: #e5e5e5 solid 1px;
+    border-bottom: #e5e5e5 solid 1px;
+    padding-left: 20px;
+    background: url(/images/logos/icon_time.png) no-repeat left top 14px;
+    padding-top: 11px;
+    padding-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+  }
+
+  .tintucb {
+    margin-top: 10px;
+    color: #000000;
+    font-size: 14px;
+  }
+}
+
+.mgbt {
+  margin-bottom: 25px;
+}
+
+.border {
+  border-top: #e5e5e5 solid 1px;
+}
+
+.dobong:hover {
+  box-shadow: 0px 1px 4px 1px #999
+}
+
+.dpll {
+  display: block;
+
+  .gia {
+    padding-left: 20px;
+    font-size: 16px;
+    padding-top: 15px;
+    color: #333333;
+    //border-top: #dddddd solid 1px;
+    .red {
+      color: #e11428;
+      font-weight: bold;
+    }
+  }
+}
+
+.product {
+  border: #dadada solid 1px;
+  background-color: #f9f9f9;
+}
+
+.product:hover {
+  background-color: #ffffff;
+}
+
+.dobong:hover {
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+@media all and (min-width: 1024px) {
+  .thuoctinh {
+    height: 7.5em
+  }
+  .ftuychonall, .ftuychon {
+    height: 7.5em;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ftuychonall, .ftuychon {
+    display: block;
+  }
+}

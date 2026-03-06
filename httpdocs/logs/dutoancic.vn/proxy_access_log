@@ -1,0 +1,4 @@
+38.99.62.94 - - [09/Apr/2020:08:35:07 +0700] "GET / HTTP/1.1" 200 5268 "-" "Mozilla/5.0 (compatible; evc-batch/2.0)"
+118.70.235.209 - - [09/Apr/2020:08:44:05 +0700] "GET /SanPham/ESCON2014/DatabaseUpdate.xml HTTP/1.1" 200 413652 "-" "-"
+118.70.235.209 - - [09/Apr/2020:10:33:55 +0700] "GET /SanPham/ESCON2014/DatabaseUpdate.xml HTTP/1.1" 200 413652 "-" "-"
+118.70.235.209 - - [09/Apr/2020:14:12:09 +0700] "GET /SanPham/ESCON2014/DatabaseUpdate.xml HTTP/1.1" 200 413652 "-" "-"

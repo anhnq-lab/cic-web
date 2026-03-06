@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Báo cáo Fix & Nâng cấp Website CIC.COM.VN</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #dbeafe;
+            --danger: #ef4444;
+            --danger-light: #fef2f2;
+            --danger-border: #fecaca;
+            --success: #10b981;
+            --success-light: #ecfdf5;
+            --success-border: #a7f3d0;
+            --warning: #f59e0b;
+            --warning-light: #fffbeb;
+            --warning-border: #fde68a;
+            --info: #3b82f6;
+            --info-light: #eff6ff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-500: #6b7280;
+            --gray-600: #4b5563;
+            --gray-700: #374151;
+            --gray-800: #1f2937;
+            --gray-900: #111827;
+            --radius: 12px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--gray-100);
+            color: var(--gray-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* Header */
+        .report-header {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb, #3b82f6);
+            border-radius: var(--radius);
+            padding: 40px 48px;
+            color: white;
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+            overflow: hidden;
+        }
+        .report-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .report-header h1 {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            position: relative;
+        }
+        .report-header .subtitle {
+            font-size: 15px;
+            opacity: 0.9;
+            font-weight: 400;
+            position: relative;
+        }
+        .report-meta {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 24px;
+            position: relative;
+        }
+        .meta-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 13px;
+        }
+        .meta-item strong {
+            display: block;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.7;
+            margin-bottom: 2px;
+        }
+
+        /* Summary Cards */
+        .summary-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .summary-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            border-top: 3px solid var(--primary);
+        }
+        .summary-card.danger { border-top-color: var(--danger); }
+        .summary-card.success { border-top-color: var(--success); }
+        .summary-card.warning { border-top-color: var(--warning); }
+        .summary-card .number {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--gray-900);
+            line-height: 1;
+        }
+        .summary-card .label {
+            font-size: 12px;
+            color: var(--gray-500);
+            margin-top: 4px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
+            font-weight: 500;
+        }
+
+        /* Sections */
+        .section {
+            background: white;
+            border-radius: var(--radius);
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: var(--shadow);
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--gray-100);
+        }
+        .section-title .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .section-title .icon.red { background: var(--danger-light); }
+        .section-title .icon.green { background: var(--success-light); }
+        .section-title .icon.blue { background: var(--info-light); }
+        .section-title .icon.yellow { background: var(--warning-light); }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            margin-bottom: 16px;
+        }
+        thead th {
+            background: var(--gray-50);
+            padding: 10px 14px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray-600);
+            border-bottom: 2px solid var(--gray-200);
+        }
+        tbody td {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--gray-100);
+            color: var(--gray-700);
+        }
+        tbody tr:hover { background: var(--gray-50); }
+        tbody tr:last-child td { border-bottom: none; }
+
+        /* Tags/Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge.fatal { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+        .badge.done { background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; }
+        .badge.warn { background: #fffbeb; color: #92400e; border: 1px solid #fde68a; }
+
+        /* Alert boxes */
+        .alert {
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin-bottom: 16px;
+            font-size: 13px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .alert.alert-danger {
+            background: var(--danger-light);
+            border: 1px solid var(--danger-border);
+            color: #991b1b;
+        }
+        .alert.alert-success {
+            background: var(--success-light);
+            border: 1px solid var(--success-border);
+            color: #065f46;
+        }
+        .alert.alert-warning {
+            background: var(--warning-light);
+            border: 1px solid var(--warning-border);
+            color: #92400e;
+        }
+        .alert .alert-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+        /* Comparison table */
+        .compare-table th:first-child { width: 22%; }
+        .compare-table .old { color: var(--danger); }
+        .compare-table .new { color: var(--success); font-weight: 600; }
+
+        /* Steps timeline */
+        .timeline {
+            position: relative;
+            padding-left: 28px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 4px;
+            bottom: 4px;
+            width: 2px;
+            background: var(--gray-200);
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -22px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 6px;
+        }
+        .timeline-item p {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+
+        /* Results comparison */
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+        .result-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: var(--gray-50);
+        }
+        .result-item .emoji { font-size: 20px; }
+        .result-item .info { flex: 1; }
+        .result-item .info .title { font-size: 12px; color: var(--gray-500); font-weight: 500; }
+        .result-item .info .before { font-size: 12px; color: var(--danger); text-decoration: line-through; }
+        .result-item .info .after { font-size: 13px; color: var(--success); font-weight: 600; }
+
+        /* Roadmap */
+        .roadmap {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .roadmap-item {
+            background: var(--gray-50);
+            border-radius: 10px;
+            padding: 18px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            transition: transform 0.2s;
+        }
+        .roadmap-item:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .roadmap-item .phase {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        .roadmap-item .desc {
+            font-size: 12px;
+            color: var(--gray-600);
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        .roadmap-item .time {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--gray-800);
+        }
+
+        /* Priority sections */
+        .priority-group {
+            margin-bottom: 20px;
+        }
+        .priority-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .priority-label.high { background: #fef2f2; color: #991b1b; }
+        .priority-label.medium { background: #fffbeb; color: #92400e; }
+        .priority-label.strategic { background: #ecfdf5; color: #065f46; }
+
+        /* Footer */
+        .report-footer {
+            text-align: center;
+            padding: 24px;
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+
+        code {
+            background: var(--gray-100);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'SF Mono', Consolas, monospace;
+            color: var(--danger);
+        }
+
+        .subsection {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--gray-100);
+        }
+        .subsection-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 12px;
+        }
+
+        @media print {
+            body { background: white; }
+            .container { padding: 0; max-width: 100%; }
+            .section { box-shadow: none; border: 1px solid var(--gray-200); break-inside: avoid; }
+            .report-header { break-after: avoid; }
+            .summary-row { break-inside: avoid; }
+        }
+        @media (max-width: 768px) {
+            .summary-row { grid-template-columns: repeat(2, 1fr); }
+            .roadmap { grid-template-columns: repeat(2, 1fr); }
+            .result-grid { grid-template-columns: 1fr; }
+            .report-header { padding: 28px 24px; }
+            .section { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <!-- HEADER -->
+    <div class="report-header">
+        <h1>📋 Báo cáo Fix & Nâng cấp Website CIC.COM.VN</h1>
+        <p class="subtitle">Tổng hợp tình hình xử lý sự cố bảo mật và nâng cấp hệ thống</p>
+        <div class="report-meta">
+            <div class="meta-item">
+                <strong>Người thực hiện</strong>
+                Quốc Anh
+            </div>
+            <div class="meta-item">
+                <strong>Thời gian</strong>
+                03/03/2026 – 04/03/2026
+            </div>
+            <div class="meta-item">
+                <strong>Website</strong>
+                cic.com.vn
+            </div>
+            <div class="meta-item">
+                <strong>Hosting</strong>
+                Plesk – Matbao
+            </div>
+        </div>
+    </div>
+
+    <!-- SUMMARY CARDS -->
+    <div class="summary-row">
+        <div class="summary-card danger">
+            <div class="number">6</div>
+            <div class="label">Lỗ hổng bảo mật</div>
+        </div>
+        <div class="summary-card warning">
+            <div class="number">30+</div>
+            <div class="label">File đã sửa</div>
+        </div>
+        <div class="summary-card success">
+            <div class="number">4</div>
+            <div class="label">Phase hoàn thành</div>
+        </div>
+        <div class="summary-card">
+            <div class="number">593<span style="font-size:16px;color:var(--gray-500)">MB</span></div>
+            <div class="label">Backup đầy đủ</div>
+        </div>
+    </div>
+
+    <!-- PHẦN A: HACK -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon red">🔴</span>
+            Phần A — Xử lý sự cố bị Hack (SEO Spam)
+        </div>
+
+        <div class="alert alert-danger">
+            <span class="alert-icon">⚠️</span>
+            <div>
+                <strong>Phát hiện bị tấn công Japanese SEO Spam / Pharma Hack</strong> — Hacker chèn nội dung casino, gambling, và ký tự tiếng Nhật vào database để lợi dụng Google index của website CIC.
+            </div>
+        </div>
+
+        <div class="subsection-title">Hiện trạng khi phát hiện</div>
+        <table>
+            <thead>
+                <tr><th>Dấu hiệu</th><th>Chi tiết</th><th>Mức độ</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Spam content trong database</td>
+                    <td>Nội dung casino, slot, gambling, cá cược bị chèn vào bảng tin tức, sản phẩm</td>
+                    <td><span class="badge fatal">🔴 Nghiêm trọng</span></td>
+                </tr>
+                <tr>
+                    <td>Japanese SEO Injection</td>
+                    <td>Ký tự tiếng Nhật (Kanji, Hiragana, Katakana) bị inject để tạo trang spam</td>
+                    <td><span class="badge fatal">🔴 Nghiêm trọng</span></td>
+                </tr>
+                <tr>
+                    <td>URL đáng ngờ</td>
+                    <td>Short URL (bit.ly, tinyurl, goo.gl) bị nhúng vào nội dung bài viết</td>
+                    <td><span class="badge fatal">🔴 Nghiêm trọng</span></td>
+                </tr>
+                <tr>
+                    <td>Lỗ hổng SQL Injection</td>
+                    <td>4 file dùng hàm <code>mysql_real_escape_string()</code> đã bị loại bỏ</td>
+                    <td><span class="badge fatal">🔴 Nghiêm trọng</span></td>
+                </tr>
+                <tr>
+                    <td>Lộ thông tin server</td>
+                    <td>File <code>phpinfo.php</code>, <code>info.php</code>, <code>test.php</code> trên production</td>
+                    <td><span class="badge warn">🟡 Cao</span></td>
+                </tr>
+                <tr>
+                    <td>File lạ trên server</td>
+                    <td>File hash-named do hacker/scanner đặt, <code>BlacklistR4.txt</code></td>
+                    <td><span class="badge warn">🟡 Cao</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="subsection">
+            <div class="subsection-title">Nguyên nhân gây bị hack</div>
+            <table>
+                <thead>
+                    <tr><th style="width:5%">#</th><th style="width:30%">Nguyên nhân</th><th>Giải thích</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td><strong>CMS PHP quá cũ</strong></td><td>Framework tự viết từ PHP 5.x, không cập nhật bảo mật từ 2022</td></tr>
+                    <tr><td>2</td><td><strong>SQL Injection</strong></td><td>Hàm escape bị loại bỏ → input không được bảo vệ</td></tr>
+                    <tr><td>3</td><td><strong>Không có input validation</strong></td><td>Parameters từ URL truyền thẳng vào query</td></tr>
+                    <tr><td>4</td><td><strong>File debug trên production</strong></td><td><code>phpinfo.php</code> lộ PHP version, extensions, đường dẫn</td></tr>
+                    <tr><td>5</td><td><strong>CKEditor/CKFinder cũ</strong></td><td>Phiên bản PEAR vendor có lỗ hổng <code>create_function()</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">Quá trình xử lý</div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Bước 1: Backup toàn bộ</h4>
+                    <p>Tạo <code>cic-code-backup-20260303.zip</code> (593 MB) trước khi can thiệp. Lưu bản gốc từng file vào thư mục backup riêng.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Bước 2: Rà soát Database (Spam Scan)</h4>
+                    <p>Viết script quét toàn bộ database tìm spam keywords (casino, gambling, cá cược...), ký tự tiếng Nhật, URL đáng ngờ, và bản ghi bất thường trong 30 ngày.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Bước 3: Quét mã độc trên file hệ thống</h4>
+                    <p>Tìm <code>eval()</code>, <code>base64_decode()</code> trong source code. Kiểm tra <code>.htaccess</code> chống inject redirect. Phát hiện file hash-named bất thường.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Bước 4: Vá lỗ hổng bảo mật</h4>
+                    <p>Fix SQL Injection (4 file), xóa <code>get_magic_quotes_gpc()</code>, sửa constructor exploit, chuyển <code>create_function()</code> sang closure.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Bước 5: Cập nhật .htaccess bảo mật</h4>
+                    <p>Thêm redirect <code>cic.com.vn</code> → <code>www.cic.com.vn</code>. Cập nhật URL pattern sản phẩm. Thêm no-cache cho HTML/JS/CSS.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHẦN B: PHP 8 -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon blue">🔵</span>
+            Phần B — Nâng cấp tương thích PHP 8
+        </div>
+
+        <div class="alert alert-warning">
+            <span class="alert-icon">⚡</span>
+            <div>
+                <strong>Website không hoạt động trên PHP 8</strong> — CMS custom viết từ thời PHP 5.x chứa 6 loại cú pháp đã bị loại bỏ, gây lỗi Fatal Error khi nâng cấp PHP.
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr><th>Phase</th><th>File đã sửa</th><th>Sửa đổi chính</th><th>Trạng thái</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Phase 1</strong><br><span style="color:var(--gray-500);font-size:11px">Core Framework</span></td>
+                    <td><code>pdo.php</code><br><code>templates.php</code><br><code>fsmodels.php</code></td>
+                    <td><code>var</code> → <code>public</code>, sửa constructor cũ → <code>__construct()</code>, fix <code>implode()</code></td>
+                    <td><span class="badge done">✅ Hoàn thành</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Phase 2</strong><br><span style="color:var(--gray-500);font-size:11px">Plugins</span></td>
+                    <td><code>counter.php</code><br><code>comment.php</code><br><code>enterprise.php</code><br><code>accessories.php</code></td>
+                    <td><code>mysql_real_escape_string</code> → <code>$db->escape_string</code>, xóa <code>get_magic_quotes_gpc()</code></td>
+                    <td><span class="badge done">✅ Hoàn thành</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Phase 3</strong><br><span style="color:var(--gray-500);font-size:11px">CKFinder PEAR</span></td>
+                    <td><code>Autoloader.php</code><br><code>Downloader.php</code><br><code>Registry.php</code><br><code>v2.php</code> <em>+ thêm</em></td>
+                    <td><code>create_function()</code> → anonymous function (closure). Áp dụng cho cả 2 thư mục CKEditor.</td>
+                    <td><span class="badge done">✅ Hoàn thành</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Phase 4</strong><br><span style="color:var(--gray-500);font-size:11px">Production Deploy</span></td>
+                    <td>
+                        <code>fsinput.php</code><br>
+                        <code>fsuser.php</code><br>
+                        <code>functions.php</code><br>
+                        <code>pdo.php</code><br>
+                        <code>defines.php</code><br>
+                        <code>templates.php</code><br>
+                        <code>30+ module files</code>
+                    </td>
+                    <td>
+                        <code>get_magic_quotes_gpc()</code> → <code>false</code><br>
+                        <code>each()</code> → <code>foreach</code><br>
+                        <code>class FS_PDO extends PDO</code> → <code>class FS_PDO</code> (fix method signature)<br>
+                        Thêm constant <code>IS_REWRITE</code><br>
+                        Fix <code>count($var)</code> → <code>count($var ?? [])</code> toàn bộ codebase<br>
+                        Fix <code>sepa_seo_title</code> undefined constant trong templates
+                    </td>
+                    <td><span class="badge done">✅ Hoàn thành</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert alert-success">
+            <span class="alert-icon">✅</span>
+            <div>
+                <strong>Website đã hoạt động trên PHP 8.1</strong> — Fix trực tiếp trên production server qua SSH. Homepage, menu, CSS đều hoạt động bình thường. Các lỗi Fatal Error đã được xử lý toàn bộ.
+            </div>
+        </div>
+
+        <div class="subsection">
+            <div class="subsection-title">Chi tiết Phase 4 — Các lỗi PHP 8 nghiêm trọng đã fix trực tiếp trên server</div>
+            <table>
+                <thead>
+                    <tr><th style="width:5%">#</th><th style="width:30%">Lỗi</th><th>File</th><th>Cách fix</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td><strong><code>get_magic_quotes_gpc()</code> removed</strong></td><td><code>fsinput.php</code>, <code>fsuser.php</code></td><td>Thay bằng <code>false</code> (hàm luôn trả false từ PHP 5.4)</td></tr>
+                    <tr><td>2</td><td><strong><code>each()</code> removed</strong></td><td><code>functions.php</code></td><td>Chuyển sang <code>foreach</code></td></tr>
+                    <tr><td>3</td><td><strong>PDO method signature incompatible</strong></td><td><code>pdo.php</code></td><td>Bỏ <code>extends PDO</code>, giữ wrapper pattern</td></tr>
+                    <tr><td>4</td><td><strong><code>IS_REWRITE</code> undefined constant</strong></td><td><code>defines.php</code></td><td>Thêm <code>define('IS_REWRITE', 1)</code></td></tr>
+                    <tr><td>5</td><td><strong><code>count(null)</code> TypeError</strong></td><td>30+ file (templates, modules, libraries)</td><td>Fix toàn bộ <code>count($var)</code> → <code>count($var ?? [])</code></td></tr>
+                    <tr><td>6</td><td><strong><code>sepa_seo_title</code> undefined constant</strong></td><td><code>templates.php</code></td><td>Sửa thành <code>$module_config->sepa_seo_title</code></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- PHẦN C: KẾT QUẢ -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon green">✅</span>
+            Phần C — Kết quả đạt được
+        </div>
+
+        <div class="result-grid">
+            <div class="result-item">
+                <div class="emoji">🛡️</div>
+                <div class="info">
+                    <div class="title">Tình trạng hack</div>
+                    <div class="before">⛔ Bị chèn spam casino/Japanese</div>
+                    <div class="after">✅ Đã rà soát + vá lỗ hổng</div>
+                </div>
+            </div>
+            <div class="result-item">
+                <div class="emoji">💉</div>
+                <div class="info">
+                    <div class="title">SQL Injection</div>
+                    <div class="before">⛔ 4 file dính lỗ hổng</div>
+                    <div class="after">✅ Đã fix hết</div>
+                </div>
+            </div>
+            <div class="result-item">
+                <div class="emoji">⚙️</div>
+                <div class="info">
+                    <div class="title">Tương thích PHP 8.1</div>
+                    <div class="before">❌ WSOD (White Screen of Death)</div>
+                    <div class="after">✅ Hoạt động bình thường — 4 phase đã fix</div>
+                </div>
+            </div>
+            <div class="result-item">
+                <div class="emoji">🧩</div>
+                <div class="info">
+                    <div class="title">Plugins / CKEditor</div>
+                    <div class="before">❌ Dùng hàm bị xóa</div>
+                    <div class="after">✅ Đã cập nhật hết</div>
+                </div>
+            </div>
+            <div class="result-item">
+                <div class="emoji">💾</div>
+                <div class="info">
+                    <div class="title">Backup</div>
+                    <div class="before">❌ Không có backup</div>
+                    <div class="after">✅ Full backup 593 MB</div>
+                </div>
+            </div>
+            <div class="result-item">
+                <div class="emoji">📁</div>
+                <div class="info">
+                    <div class="title">Tổng file đã sửa</div>
+                    <div class="before">&nbsp;</div>
+                    <div class="after">30+ file trên 4 phase</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHẦN D: BROKEN LINKS -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon yellow">🔗</span>
+            Phần D — Broken Links phát hiện
+        </div>
+
+        <table>
+            <thead>
+                <tr><th style="width:5%">#</th><th>Link hỏng</th><th>Nguyên nhân</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td><code>javascrip:void(0)</code></td><td>Typo: thiếu chữ <code>t</code> — ảnh hưởng nhiều trang</td></tr>
+                <tr><td>2</td><td><code>/vi</code></td><td>Route không tồn tại</td></tr>
+                <tr><td>3</td><td><code>san-pham/etabs</code></td><td>Thiếu slug đầy đủ</td></tr>
+                <tr><td>4</td><td>Hướng dẫn sử dụng DSAP</td><td>Trang cũ đã 404</td></tr>
+                <tr><td>5</td><td><code>/testfloori/</code></td><td>Thư mục test cũ chưa xóa</td></tr>
+                <tr><td>6-9</td><td>Nhiều trang search, products</td><td>Lỗi template lặp <code>javascrip:void(0)</code></td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PHẦN E: ĐỀ XUẤT -->
+    <div class="section">
+        <div class="section-title">
+            <span class="icon green">🚀</span>
+            Phần E — Đề xuất tiếp theo
+        </div>
+
+        <!-- High Priority -->
+        <div class="priority-group">
+            <div class="priority-label high">🔴 Ưu tiên cao — Làm ngay</div>
+            <table>
+                <thead>
+                    <tr><th style="width:5%">#</th><th style="width:35%">Đề xuất</th><th>Lý do</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td><strong>Xóa file debug/test</strong></td><td><code>phpinfo.php</code>, <code>info.php</code>, <code>test.php</code>, <code>deploy_php8.php</code>, <code>cic_db_scan_temp_x9k2.php</code></td></tr>
+                    <tr><td>2</td><td><strong>Đổi mật khẩu database</strong></td><td>Password bị lộ trong error_log stack trace</td></tr>
+                    <tr><td>3</td><td><strong>Xóa/rotate error_log</strong></td><td>1.1 MB chứa credential, cần archive + xóa</td></tr>
+                    <tr><td>4</td><td><strong>Xóa file lạ</strong></td><td>File hash-named, BlacklistR4.txt</td></tr>
+                    <tr><td>5</td><td><strong>Kiểm tra database spam</strong></td><td>Chạy lại scan xác nhận đã sạch</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Medium Priority -->
+        <div class="priority-group">
+            <div class="priority-label medium">🟡 Ưu tiên trung bình</div>
+            <table>
+                <thead>
+                    <tr><th style="width:5%">#</th><th style="width:35%">Đề xuất</th><th>Lý do</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>6</td><td><strong>Fix lỗi IS_REWRITE</strong></td><td><span class="badge done">✅ Đã fix</span> — Thêm <code>define('IS_REWRITE', 1)</code> vào <code>defines.php</code></td></tr>
+                    <tr><td>7</td><td><strong>Sửa broken links</strong></td><td>Fix typo <code>javascrip</code> → <code>javascript</code> trong template</td></tr>
+                    <tr><td>8</td><td><strong>Thêm Security Headers</strong></td><td>CSP, X-Frame-Options, X-Content-Type-Options</td></tr>
+                    <tr><td>9</td><td><strong>Cập nhật CKEditor</strong></td><td>Phiên bản PEAR quá cũ, nhiều lỗ hổng</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Strategic Priority -->
+        <div class="priority-group">
+            <div class="priority-label strategic">🟢 Ưu tiên chiến lược — Chuyển đổi nền tảng</div>
+
+            <div class="alert alert-success" style="margin-top:12px">
+                <span class="alert-icon">💡</span>
+                <div>
+                    <strong>CMS PHP 5 custom hiện tại đã quá cũ, khó bảo trì, và dễ bị hack lại.</strong><br>
+                    Đề xuất xây dựng lại website trên nền tảng hiện đại: <strong>Next.js/Vite + Supabase</strong>.
+                </div>
+            </div>
+
+            <div class="subsection-title" style="margin-top:20px">So sánh nền tảng cũ → mới</div>
+            <table class="compare-table">
+                <thead>
+                    <tr><th>Thành phần</th><th>Hiện tại (cũ)</th><th>Đề xuất (mới)</th></tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Backend / Database</strong></td>
+                        <td class="old">MySQL trên shared hosting</td>
+                        <td class="new">Supabase (PostgreSQL managed)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Frontend</strong></td>
+                        <td class="old">PHP template engine tự viết</td>
+                        <td class="new">Next.js hoặc Vite + React</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td class="old">Session PHP thủ công</td>
+                        <td class="new">Supabase Auth (OAuth, email)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>File Storage</strong></td>
+                        <td class="old">Upload trực tiếp server</td>
+                        <td class="new">Supabase Storage (S3-compatible)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>API</strong></td>
+                        <td class="old">Query SQL trực tiếp từ PHP</td>
+                        <td class="new">Supabase REST/Realtime API + RLS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>CMS / Editor</strong></td>
+                        <td class="old">CKEditor cũ + CKFinder</td>
+                        <td class="new">Headless CMS hiện đại</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Hosting</strong></td>
+                        <td class="old">Shared hosting Matbao</td>
+                        <td class="new">Vercel / Cloudflare Pages (CDN)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bảo mật</strong></td>
+                        <td class="old">Không WAF, SQL injection</td>
+                        <td class="new">Supabase RLS + Cloudflare WAF</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="subsection-title" style="margin-top:20px">Lợi ích khi chuyển sang Supabase</div>
+            <table>
+                <thead>
+                    <tr><th style="width:5%">#</th><th style="width:30%">Lợi ích</th><th>Chi tiết</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>🛡️ <strong>Bảo mật cao hơn</strong></td><td>Row Level Security (RLS) bảo vệ dữ liệu cấp hàng, không lo SQL injection</td></tr>
+                    <tr><td>2</td><td>☁️ <strong>Không quản lý server</strong></td><td>Supabase quản lý database, backup tự động, scaling</td></tr>
+                    <tr><td>3</td><td>⚡ <strong>API tự động</strong></td><td>RESTful API + Realtime subscriptions tự generate từ schema</td></tr>
+                    <tr><td>4</td><td>🔐 <strong>Auth tích hợp</strong></td><td>Google, Facebook, email login — không cần code thêm</td></tr>
+                    <tr><td>5</td><td>📦 <strong>Storage tích hợp</strong></td><td>Upload/quản lý file với CDN, không lo hết dung lượng hosting</td></tr>
+                    <tr><td>6</td><td>💰 <strong>Free tier rộng rãi</strong></td><td>500MB database, 1GB storage, 50K monthly active users miễn phí</td></tr>
+                    <tr><td>7</td><td>🔄 <strong>Migration dễ dàng</strong></td><td>Hỗ trợ import từ MySQL → PostgreSQL</td></tr>
+                </tbody>
+            </table>
+
+            <div class="subsection-title" style="margin-top:20px">Lộ trình chuyển đổi đề xuất</div>
+            <div class="roadmap">
+                <div class="roadmap-item">
+                    <div class="phase">Giai đoạn 1</div>
+                    <div class="desc">Tạo Supabase project, migrate schema + data từ MySQL</div>
+                    <div class="time">1-2 tuần</div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="phase">Giai đoạn 2</div>
+                    <div class="desc">Xây frontend mới (Next.js/Vite), kết nối Supabase API</div>
+                    <div class="time">3-4 tuần</div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="phase">Giai đoạn 3</div>
+                    <div class="desc">Tích hợp Auth, Storage, CMS admin</div>
+                    <div class="time">2-3 tuần</div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="phase">Giai đoạn 4</div>
+                    <div class="desc">Test, SEO migration (301), deploy Vercel</div>
+                    <div class="time">1-2 tuần</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="report-footer">
+        <p><strong>Ghi chú:</strong> Toàn bộ code gốc đã được backup tại <code>cic-code-backup-20260303.zip</code> (593 MB). Có thể rollback bất cứ lúc nào.</p>
+        <p style="margin-top:8px; opacity:0.7">Báo cáo được tạo ngày 04/03/2026 — CIC Technical Team</p>
+    </div>
+
+</div>
+</body>
+</html>

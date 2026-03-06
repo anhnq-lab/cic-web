@@ -1,0 +1,388 @@
+body {
+    .tintuc {
+        .content {
+            margin-bottom: 15px;
+        }
+
+        .section1 {
+            margin-top: 45px;
+            margin-bottom: 30px;
+
+            p {
+                font-size: 28px;
+                color: #40b5e6;
+            }
+
+            a {
+                text-decoration: none;
+                font-size: 16px;
+                color: #777777;
+            }
+        }
+
+        .section2 {
+            margin-top: 30px;
+            // display: flex;
+            border: 1px solid #d7d7d7;
+            // .section2_left{
+            // 	width: 50%;
+
+            // }
+            .glyphicon-chevron-left {
+                left: 0%;
+                background: url(/images/logos/left.png) no-repeat top 0 left 10px;
+                width: 40px;
+                height: 60px;
+                text-shadow: none;
+                border: none;
+                font-size: 0;
+            }
+
+            .glyphicon-chevron-right {
+                right: 0%;
+                background: url(/images/logos/right.png) no-repeat top 10px right 15px;
+                width: 40px;
+                height: 60px;
+                text-shadow: none;
+                border: none;
+                font-size: 0;
+            }
+
+            .prev {
+                background: none;
+                @media all and(max-width: 767px) {
+                    top: 21%;
+                    bottom: unset;
+                }
+            }
+
+            .section2_right {
+                // margin-left: 20px;
+                // width: 50%;
+                margin-top: 28px;
+                padding-right: 25px;
+
+                .title {
+                    font-size: 24px;
+                    color: #40b5e6;
+                    font-weight: bold;
+                    line-height: 1.3;
+                    @media all and(max-width: 767px) {
+                        font-size: 19px;
+                        padding-left: 10px;
+                        margin-top: 10px;
+
+                    }
+                }
+
+                .time {
+                    line-height: 25px;
+                    color: #777777;
+                    padding: 12px 0px 2px 20px;
+                    background: url(/images/logos/time.png) no-repeat left 18px;
+                    @media all and(max-width: 767px) {
+                        padding: 0px 0px 2px 30px;
+                        background: url(/images/logos/time.png) no-repeat top 6px left 10px;
+                    }
+                }
+
+                .summary {
+                    line-height: 20px;
+                    color: #333333;
+                    font-size: 14px;
+                    @media all and(max-width: 767px) {
+                        padding-left: 10px;
+                    }
+                }
+
+                button {
+                    color: #e2f1fa;
+                    background-color: #40b5e6;
+                    font-size: 16px;
+                    margin-top: 60px;
+                    padding: 6px 20px;
+                }
+            }
+        }
+
+        .section3 {
+            margin-top: 40px;
+            @media (max-width: 425px) {
+                margin-top: 0 !important;
+            }
+
+            p {
+                padding: 8px;
+                background-color: #333333;
+                @media (max-width: 1024px) {
+                    height: 56px;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: #cbcbcb;
+                    width: 270px;
+                    height: 50px;
+                }
+            }
+        }
+
+        .section4 {
+            margin-top: 20px;
+        }
+
+        .section5 {
+            margin-top: 30px;
+            //@media(max-width: 425px) {
+            //    margin-top: 20px;
+            //
+            //}
+
+            .section5_text {
+                line-height: 20px;
+                margin-top: 10px;
+            }
+
+            .section5_l {
+                background: #40b5e6 url(/images/logos/tintuc11.png) no-repeat right 15px top 11px;
+                padding: 8px;
+                display: block;
+                margin: 0;
+
+                p {
+                    margin: 0;
+                    padding-left: 12px;
+                }
+            }
+
+            .section5_a {
+                padding: 10px 0px 0px 15px;
+                background: url(/images/logos/tintuc12.png) no-repeat left 0px top 15px;
+                display: block;
+                color: #333333;
+                font-size: 14px;
+                clear: both;
+                // padding-left: 5px;
+                // &:first-child{
+                // padding:  15px 0px 0px 15px;
+                // }
+            }
+
+            .section5_a:first-child {
+                padding: 15px 0px 0px 15px;
+            }
+
+            .section5_left2 {
+                margin-top: 20px;
+                display: block;
+                padding-right: 5px;
+            }
+
+            .new_title {
+                margin-top: 0px;
+                font-weight: bold;
+                font-size: 14px;
+                color: #333333;
+                line-height: 20px;
+                @media  (max-width: 1199px) and(min-width: 1023px){
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 4;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+            .section5_text {
+                line-height: 18px;
+                font-size: 14px;
+                color: #555555;
+                @media  (max-width: 1199px) and(min-width: 1023px){
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                font-size: 18px;
+                color: #ffffff;
+            }
+
+            img {
+                margin-right: 15px;
+                float: left;
+
+                @media all and (min-width: 1023px) {
+                    width: 45%;
+                }
+                @media all and (max-width: 425px) {
+                    float: none;
+                    margin-bottom: 15px;
+                    max-width: 100%;
+                    height: auto;
+                    margin-left: auto;
+                    margin-right: auto;
+                    display: block;
+                }
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .section2 {
+                img {
+                    width: 100%;
+                }
+
+                .section2_right {
+                    button {
+                        margin-top: 25px;
+                    }
+                }
+            }
+            .section3 {
+                img {
+                    width: 100%
+                }
+
+                a {
+                    font-size: 12px;
+                }
+            }
+            .section4 {
+                img {
+                    width: 100%;
+                }
+                @media(max-width: 768px){
+                    display: none;
+                }
+            }
+            .section5 {
+                .section5_text {
+                    line-height: 20px;
+                    font-size: 13px;
+                    margin-top: 0px;
+                }
+
+                .section5_a {
+                    p {
+                        padding: 6px 0px 2px 20px;
+                        background: url(../img/imgtintuc/tintuc12.png) no-repeat left 10px;
+                    }
+                }
+
+                h2 {
+                    margin-top: 0px;
+                    font-size: 13px;
+                    line-height: 16px;
+                }
+
+            }
+        }
+        @media (max-width: 768px) {
+            .section1 {
+                margin-top: 0;
+            }
+            .section2 {
+                .section2_right {
+                    margin-top: 0;
+
+                    strong {
+                        font-size: 18px;
+                    }
+
+                    p {
+                        line-height: 8px;
+                        background: url(../img/imgtintuc/tintuc1.png) no-repeat left 10px;
+                    }
+
+                    h4 {
+                        font-size: 13px;
+                    }
+
+                    button {
+                        margin-top: 0px;
+                        margin-bottom: 15px
+                    }
+                }
+            }
+            .section3 {
+                img {
+                    width: 100%;
+                }
+            }
+            .section5 {
+                .section5_text {
+                    margin-top: 10px;
+                    line-height: 25px;
+                }
+
+                h2 {
+                    line-height: 25px;
+                    margin-top: 30px;
+                }
+            }
+        }
+        // .section6{
+        // 	margin-top: 30px;
+        // 	.section6_l{
+        // 		background: url(../img/imgtintuc/tintuc6.png) no-repeat;
+        // 		padding: 8px;
+        // 		background: #40b5e6;
+        // 			}
+        // 	.section6_a{
+        // 		color: #555555;
+        // 		p{
+        // 			padding:  12px 0px 2px 20px;
+        // 			background: url(../img/imgtintuc/tintuc12.png) no-repeat left 17px;
+        // 		}
+        // 	}
+        // 	h1{
+        // 		margin-top: 0px;
+        // 		font-weight: bold;
+        // 		font-size: 14px;
+        // 		color: #494949;
+        // 	}
+        // 	h2{
+        // 		line-height: 17px;
+        // 		font-size: 14px;
+        // 		color: #555555;
+        // 	}
+        // 	a{
+        // 		margin-left: 15px;
+        // 		font-size: 18px;
+        // 		color: #ffffff;
+        // 	}
+        // 	img{
+        // 		margin-top: 25px;
+        // 		margin-right: 15px;
+        // 		width: auto;
+        // 		float: left;
+        // 		}
+        // }
+    }
+}
+
+.section3 .anhdemo {
+    display: block;
+
+    img {
+        width: 100%;
+    }
+}
+
+.section5 .section5_left {
+    margin-bottom: 35px;
+}
+
+@media all and(max-width: 768px) {
+    .section2_right {
+        a {
+            margin-bottom: 15px;
+            margin-left: 10px;
+
+        }
+    }
+}
