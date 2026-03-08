@@ -21,6 +21,7 @@ $gitCkBase = $gitBase . '/libraries/ckeditor/plugins/ckfinder';
 echo "<h3>Step 1: Fix CKFinder vendor files</h3>";
 
 $filesToCopy = [
+    'config.js',
     'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/CKFinder.php',
     'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/Backend/Adapter/Local.php',
     'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/Exception/InvalidCsrfTokenException.php',

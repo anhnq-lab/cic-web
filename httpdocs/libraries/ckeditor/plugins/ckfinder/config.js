@@ -5,10 +5,10 @@
 
 var config = {};
 
-// Set your configuration options below.
+// Connector path
+config.connectorPath = '/libraries/ckeditor/plugins/ckfinder/core/connector/php/connector.php';
 
-// Examples:
-// config.language = 'pl';
-// config.skin = 'jquery-mobile';
+// Upload settings
+config.uploadMaxFileSize = '500MB';
 
-CKFinder.define( config );
+CKFinder.define(config);
