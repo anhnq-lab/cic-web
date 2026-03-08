@@ -1,6 +1,6 @@
 <?php
 /**
- * CKFinder Fix Script - Sửa config.php và test connector
+ * CKFinder Fix Script - Fix CKFinder.php + config.php + test
  * Truy cập: https://www.cic.com.vn/ckfinder_fix_all.php
  */
 error_reporting(E_ALL);
@@ -10,10 +10,48 @@ echo "<h2>CKFinder Fix & Debug</h2>";
 echo "<p>PHP: " . PHP_VERSION . "</p>";
 
 $base = '/var/www/vhosts/cic.com.vn/httpdocs';
-$configFile = $base . '/libraries/ckeditor/plugins/ckfinder/config.php';
+$ckBase = $base . '/libraries/ckeditor/plugins/ckfinder';
+$configFile = $ckBase . '/config.php';
 
-// ========== STEP 1: Viết lại config.php hoàn chỉnh ==========
-echo "<h3>Step 1: Viết lại config.php</h3>";
+// Git deploys repo to /httpdocs/, so repo's httpdocs/ is at /httpdocs/httpdocs/
+$gitBase = $base . '/httpdocs';
+$gitCkBase = $gitBase . '/libraries/ckeditor/plugins/ckfinder';
+
+// ========== STEP 1: Fix CKFinder.php from git version ==========
+echo "<h3>Step 1: Fix CKFinder vendor files</h3>";
+
+$filesToCopy = [
+    'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/CKFinder.php',
+    'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/Backend/Adapter/Local.php',
+    'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/Exception/InvalidCsrfTokenException.php',
+];
+
+foreach ($filesToCopy as $relPath) {
+    $gitFile = $gitCkBase . '/' . $relPath;
+    $serverFile = $ckBase . '/' . $relPath;
+
+    if (file_exists($gitFile)) {
+        // Backup
+        if (file_exists($serverFile)) {
+            copy($serverFile, $serverFile . '.bak');
+        }
+        copy($gitFile, $serverFile);
+        echo "<p style='color:green'>✅ Copied: " . basename($relPath) . "</p>";
+    } else {
+        echo "<p style='color:orange'>⚠️ Git version not found: " . basename($relPath) . " - checking server version...</p>";
+        if (file_exists($serverFile)) {
+            echo "<p>Server file exists, showing line 275-285:</p><pre>";
+            $lines = file($serverFile);
+            for ($i = max(0, 275); $i < min(count($lines), 290); $i++) {
+                echo ($i + 1) . ": " . htmlspecialchars($lines[$i]);
+            }
+            echo "</pre>";
+        }
+    }
+}
+
+// ========== STEP 2: Write config.php ==========
+echo "<h3>Step 2: Write config.php</h3>";
 
 $newConfig = '<?php
 @session_start();
@@ -151,34 +189,32 @@ $config[\'headers\'] = array();
 return $config;
 ';
 
-// Backup old config
-if (file_exists($configFile)) {
-    $backup = $configFile . '.bak.' . date('YmdHis');
-    copy($configFile, $backup);
-    echo "<p>Backed up old config to: " . basename($backup) . "</p>";
+// Only rewrite if needed
+$currentConfig = file_exists($configFile) ? file_get_contents($configFile) : '';
+if (strpos($currentConfig, 'return true') !== false && strpos($currentConfig, "csrfProtection'] = false") !== false) {
+    echo "<p style='color:green'>✅ Config already correct, skipping rewrite</p>";
+} else {
+    if (file_exists($configFile)) {
+        copy($configFile, $configFile . '.bak.' . date('YmdHis'));
+    }
+    file_put_contents($configFile, $newConfig);
+    echo "<p style='color:green'>✅ Config.php written!</p>";
 }
 
-// Write new config
-file_put_contents($configFile, $newConfig);
-echo "<p style='color:green'>✅ Config.php written successfully!</p>";
-
-// Verify syntax by including
-echo "<p>Verifying config syntax...</p>";
-
-// ========== STEP 2: Test config ==========
-echo "<h3>Step 2: Test config</h3>";
+// ========== STEP 3: Test config ==========
+echo "<h3>Step 3: Test config</h3>";
 try {
     $config = require $configFile;
     echo "<p style='color:green'>✅ Config loads OK</p>";
-    echo "<p>CSRF: " . var_export($config['csrfProtection'], true) . "</p>";
-    echo "<p>Auth: " . var_export($config['authentication'](), true) . "</p>";
+    echo "<p>CSRF: " . var_export($config['csrfProtection'], true) . " | Auth: " . var_export($config['authentication'](), true) . "</p>";
 } catch (Error $e) {
     echo "<p style='color:red'>❌ Config error: " . $e->getMessage() . "</p>";
+    die();
 }
 
-// ========== STEP 3: Test autoload ==========
-echo "<h3>Step 3: Test autoload</h3>";
-$autoload = $base . '/libraries/ckeditor/plugins/ckfinder/core/connector/php/vendor/autoload.php';
+// ========== STEP 4: Test autoload ==========
+echo "<h3>Step 4: Test autoload</h3>";
+$autoload = $ckBase . '/core/connector/php/vendor/autoload.php';
 try {
     require_once $autoload;
     echo "<p style='color:green'>✅ Autoload OK</p>";
@@ -187,14 +223,14 @@ try {
     die();
 }
 
-// ========== STEP 4: Test CKFinder ==========
-echo "<h3>Step 4: Test CKFinder instance</h3>";
+// ========== STEP 5: Test CKFinder ==========
+echo "<h3>Step 5: Test CKFinder instance</h3>";
 try {
     $ckfinder = new CKSource\CKFinder\CKFinder($configFile);
     echo "<p style='color:green'>✅ CKFinder instance OK</p>";
 
     // Test Init
-    echo "<h3>Step 5: Test Init command</h3>";
+    echo "<h3>Step 6: Test Init command</h3>";
     $_GET['command'] = 'Init';
     $_GET['type'] = 'Images';
     $_GET['currentFolder'] = '/';
@@ -219,4 +255,4 @@ echo "Intl: " . (extension_loaded('intl') ? '✅' : '❌') . "<br>";
 
 $uploadDir = $base . '/upload_images/';
 echo "<p>Upload dir: " . (is_dir($uploadDir) ? '✅ EXISTS' : '❌ MISSING') . " / " . (is_writable($uploadDir) ? '✅ WRITABLE' : '❌ NOT WRITABLE') . "</p>";
-echo "<hr><p><strong>Done!</strong> Bây giờ hãy thử lại Browse Server trong CMS.</p>";
+echo "<hr><p><strong>Done!</strong> Nếu tất cả ✅ → thử lại Browse Server trong CMS!</p>";
