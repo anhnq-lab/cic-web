@@ -162,9 +162,8 @@ if (file_exists($configFile)) {
 file_put_contents($configFile, $newConfig);
 echo "<p style='color:green'>✅ Config.php written successfully!</p>";
 
-// Verify syntax
-$output = shell_exec('php -l ' . escapeshellarg($configFile) . ' 2>&1');
-echo "<p>Syntax check: " . htmlspecialchars($output) . "</p>";
+// Verify syntax by including
+echo "<p>Verifying config syntax...</p>";
 
 // ========== STEP 2: Test config ==========
 echo "<h3>Step 2: Test config</h3>";
