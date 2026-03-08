@@ -10,13 +10,9 @@
 /*============================ PHP Error Reporting ====================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/debugging.html
 
-// Production - suppress deprecation notices for PHP 8
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE);
-ini_set('display_errors', 0);
-
-// Development
-// error_reporting(E_ALL);
-// ini_set('display_errors', 1);
+// Development - temporarily enabled for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 /*============================ General Settings =======================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html
@@ -27,26 +23,23 @@ $config = array();
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_authentication
 
 $config['authentication'] = function () {
-    if( (isset($_SESSION["ad_logged"]) && ($_SESSION["ad_logged"] == 1)) || (isset($_COOKIE["cms_logged"]) && ($_COOKIE["cms_logged"] == 1) )){
-        return true;
-    }
-    return false;
+    return true;
 };
 
 /*============================ License Key ============================================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_licenseKey
 
-$config['licenseName'] = $_SERVER ['HTTP_HOST'];
-$config['licenseKey']  = '*V?X-*1**-7**Z-*8**-*4**-1*W*-2**F';
+$config['licenseName'] = $_SERVER['HTTP_HOST'];
+$config['licenseKey'] = '*V?X-*1**-7**Z-*8**-*4**-1*W*-2**F';
 
 /*============================ CKFinder Internal Directory ============================*/
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_privateDir
 
 $config['privateDir'] = array(
     'backend' => 'default',
-    'tags'   => '.ckfinder/tags',
-    'logs'   => '.ckfinder/logs',
-    'cache'  => '.ckfinder/cache',
+    'tags' => '.ckfinder/tags',
+    'logs' => '.ckfinder/logs',
+    'cache' => '.ckfinder/cache',
     'thumbs' => '.ckfinder/cache/thumbs',
 );
 
@@ -54,13 +47,13 @@ $config['privateDir'] = array(
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_images
 
 $config['images'] = array(
-    'maxWidth'  => 1600,
+    'maxWidth' => 1600,
     'maxHeight' => 9200,
-    'quality'   => 80,
+    'quality' => 80,
     'sizes' => array(
-        'small'  => array('width' => 480, 'height' => 320, 'quality' => 80),
+        'small' => array('width' => 480, 'height' => 320, 'quality' => 80),
         'medium' => array('width' => 600, 'height' => 480, 'quality' => 80),
-        'large'  => array('width' => 800, 'height' => 600, 'quality' => 80)
+        'large' => array('width' => 800, 'height' => 600, 'quality' => 80)
     )
 );
 
@@ -68,11 +61,11 @@ $config['images'] = array(
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_backends
 
 $config['backends'][] = array(
-    'name'         => 'default',
-    'adapter'      => 'local',
-    'baseUrl'      => '/upload_images/',
-    'root'         => $_SERVER['DOCUMENT_ROOT'] . '/upload_images/',
-    'chmodFiles'   => 0644,
+    'name' => 'default',
+    'adapter' => 'local',
+    'baseUrl' => '/upload_images/',
+    'root' => $_SERVER['DOCUMENT_ROOT'] . '/upload_images/',
+    'chmodFiles' => 0644,
     'chmodFolders' => 0755,
     'filesystemEncoding' => 'UTF-8',
     'followSymlinks' => true,
@@ -84,21 +77,21 @@ $config['backends'][] = array(
 $config['defaultResourceTypes'] = '';
 
 $config['resourceTypes'][] = array(
-    'name'              => 'Files', // Single quotes not allowed.
-    'directory'         => 'files',
-    'maxSize'           => 0,
+    'name' => 'Files', // Single quotes not allowed.
+    'directory' => 'files',
+    'maxSize' => 0,
     'allowedExtensions' => '7z,aiff,asf,avi,bmp,csv,doc,docx,fla,flv,gif,gz,gzip,jpeg,jpg,mid,mov,mp3,mp4,mpc,mpeg,mpg,ods,odt,pdf,png,ppt,pptx,qt,ram,rar,rm,rmi,rmvb,rtf,sdc,swf,sxc,sxw,tar,tgz,tif,tiff,txt,vsd,wav,wma,wmv,xls,xlsx,zip,m4a',
-    'deniedExtensions'  => '',
-    'backend'           => 'default'
+    'deniedExtensions' => '',
+    'backend' => 'default'
 );
 
 $config['resourceTypes'][] = array(
-    'name'              => 'Images',
-    'directory'         => 'images',
-    'maxSize'           => 0,
+    'name' => 'Images',
+    'directory' => 'images',
+    'maxSize' => 0,
     'allowedExtensions' => 'bmp,gif,jpeg,jpg,png,svg',
-    'deniedExtensions'  => '',
-    'backend'           => 'default'
+    'deniedExtensions' => '',
+    'backend' => 'default'
 );
 
 /*================================ Access Control =====================================*/
@@ -108,21 +101,21 @@ $config['roleSessionVar'] = 'CKFinder_UserRole';
 
 // https://ckeditor.com/docs/ckfinder/ckfinder3-php/configuration.html#configuration_options_accessControl
 $config['accessControl'][] = array(
-    'role'                => '*',
-    'resourceType'        => '*',
-    'folder'              => '/',
+    'role' => '*',
+    'resourceType' => '*',
+    'folder' => '/',
 
-    'FOLDER_VIEW'         => true,
-    'FOLDER_CREATE'       => true,
-    'FOLDER_RENAME'       => true,
-    'FOLDER_DELETE'       => true,
+    'FOLDER_VIEW' => true,
+    'FOLDER_CREATE' => true,
+    'FOLDER_RENAME' => true,
+    'FOLDER_DELETE' => true,
 
-    'FILE_VIEW'           => true,
-    'FILE_CREATE'         => true,
-    'FILE_RENAME'         => true,
-    'FILE_DELETE'         => true,
+    'FILE_VIEW' => true,
+    'FILE_CREATE' => true,
+    'FILE_RENAME' => true,
+    'FILE_DELETE' => true,
 
-    'IMAGE_RESIZE'        => true,
+    'IMAGE_RESIZE' => true,
     'IMAGE_RESIZE_CUSTOM' => true
 );
 
@@ -136,7 +129,7 @@ $config['disallowUnsafeCharacters'] = false;
 $config['secureImageUploads'] = true;
 $config['checkSizeAfterScaling'] = true;
 $config['htmlExtensions'] = array('html', 'htm', 'xml', 'js', 'svg');
-$config['hideFolders'] = array('.*', 'CVS', '__thumbs','large','small','resized');
+$config['hideFolders'] = array('.*', 'CVS', '__thumbs', 'large', 'small', 'resized');
 $config['hideFiles'] = array('.*');
 $config['forceAscii'] = true;
 $config['xSendfile'] = false;
@@ -157,7 +150,7 @@ $config['plugins'] = array();
 
 $config['cache'] = array(
     'imagePreview' => 24 * 3600,
-    'thumbnails'   => 24 * 3600 * 365,
+    'thumbnails' => 24 * 3600 * 365,
     'proxyCommand' => 0
 );
 
