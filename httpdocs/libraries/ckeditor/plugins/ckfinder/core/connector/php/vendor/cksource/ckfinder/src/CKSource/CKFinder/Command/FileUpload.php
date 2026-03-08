@@ -64,6 +64,21 @@ class FileUpload extends CommandAbstract
             throw new InvalidUploadException();
         }
 
+        // PHP 8.2 compatibility: $request->files->get() may return array instead of UploadedFile object
+        if (is_array($upload)) {
+            if (isset($upload['tmp_name']) && isset($upload['name'])) {
+                $upload = new \Symfony\Component\HttpFoundation\File\UploadedFile(
+                    $upload['tmp_name'],
+                    $upload['name'],
+                    $upload['type'] ?? null,
+                    $upload['error'] ?? 0,
+                    true // test mode - already moved
+                );
+            } else {
+                throw new InvalidUploadException();
+            }
+        }
+
         $uploadedFile = new UploadedFile($upload, $this->app);
 
         if (!$uploadedFile->isValid()) {
@@ -110,8 +125,10 @@ class FileUpload extends CommandAbstract
             $imagesConfig = $config->get('images');
             $image = Image::create($uploadedFile->getContents());
 
-            if ($imagesConfig['maxWidth'] && $image->getWidth() > $imagesConfig['maxWidth'] ||
-                $imagesConfig['maxHeight'] && $image->getHeight() > $imagesConfig['maxHeight']) {
+            if (
+                $imagesConfig['maxWidth'] && $image->getWidth() > $imagesConfig['maxWidth'] ||
+                $imagesConfig['maxHeight'] && $image->getHeight() > $imagesConfig['maxHeight']
+            ) {
                 $image->resize($imagesConfig['maxWidth'], $imagesConfig['maxHeight'], $imagesConfig['quality']);
                 $imageData = $image->getData();
                 $uploadedFile->save($imageData);

@@ -25,6 +25,7 @@ $filesToCopy = [
     'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/CKFinder.php',
     'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/Backend/Adapter/Local.php',
     'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/Exception/InvalidCsrfTokenException.php',
+    'core/connector/php/vendor/cksource/ckfinder/src/CKSource/CKFinder/Command/FileUpload.php',
 ];
 
 foreach ($filesToCopy as $relPath) {
