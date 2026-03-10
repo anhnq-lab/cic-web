@@ -216,12 +216,18 @@ class ProductsModelsProduct extends FSModels
         if (!$products_related || !$record_id)
             return;
         $limit = 3;
-        $rest_products_related_ = substr($products_related, 1, -1);  // retourne "abcde"
+        // Sanitize: split by comma, keep only valid numeric IDs
+        $ids = array_filter(array_map('trim', explode(',', $products_related)), function($v) {
+            return $v !== '' && is_numeric($v);
+        });
+        if (empty($ids)) return array();
+        $clean_ids = implode(',', array_map('intval', $ids));
+        $record_id = intval($record_id);
 
         $fs_table = FSFactory::getClass('fstable');
         $query = " SELECT id,name,summary,image,price,price_old,discount,types, alias, category_id,category_alias,manufactory_image,manufactory_name
 						  FROM " . $fs_table->getTable('fs_products') . "
-						  WHERE ID IN ( $rest_products_related_ )
+						  WHERE ID IN ( $clean_ids )
 						  	AND id <>  $record_id
 						  	AND published = 1
 						     ORDER BY  ordering DESC , id DESC
@@ -280,7 +286,13 @@ class ProductsModelsProduct extends FSModels
             $where = ' id = ' . intval($value) . ' ';
             return $this->get_result($where, $table_name, 'name');
         } else {
-            $where = ' id IN (0' . $value . '0) ';
+            // Sanitize: split by comma, keep only valid numeric IDs
+            $ids = array_filter(array_map('trim', explode(',', $value)), function($v) {
+                return $v !== '' && is_numeric($v);
+            });
+            if (empty($ids)) return '';
+            $clean_ids = implode(',', array_map('intval', $ids));
+            $where = ' id IN (' . $clean_ids . ') ';
             $rs = $this->get_records($where, $table_name, 'name');
             $html = '<ul class="foreign_multi">';
             for ($i = 0; $i < count($rs); $i++) {
@@ -340,9 +352,15 @@ class ProductsModelsProduct extends FSModels
     {
         if (!$str_products_together)
             return;
+        // Sanitize: split by comma, keep only valid numeric IDs
+        $ids = array_filter(array_map('trim', explode(',', $str_products_together)), function($v) {
+            return $v !== '' && is_numeric($v);
+        });
+        if (empty($ids)) return array();
+        $clean_ids = implode(',', array_map('intval', $ids));
         $query = " SELECT name,id , image, alias,category_alias,summary
 						FROM fs_products
-						WHERE id IN (" . $str_products_together . ") 
+						WHERE id IN (" . $clean_ids . ") 
 						AND published = 1";
         global $db;
         $sql = $db->query($query);
@@ -357,8 +375,14 @@ class ProductsModelsProduct extends FSModels
     {
         if (!$list_parents)
             return;
+        // Sanitize: split by comma, keep only valid numeric IDs
+        $ids = array_filter(array_map('trim', explode(',', $list_parents)), function($v) {
+            return $v !== '' && is_numeric($v);
+        });
+        if (empty($ids)) return array();
+        $clean_ids = implode(',', array_map('intval', $ids));
         $fs_table = FSFactory::getClass('fstable');
-        $query = 'SELECT name,id,alias,parent_id FROM ' . $fs_table->getTable('fs_products_categories') . ' WHERE id IN (0' . $list_parents . '0) 
+        $query = 'SELECT name,id,alias,parent_id FROM ' . $fs_table->getTable('fs_products_categories') . ' WHERE id IN (' . $clean_ids . ') 
 					ORDER BY parent_id ASC';
         global $db;
         $db->query($query);
