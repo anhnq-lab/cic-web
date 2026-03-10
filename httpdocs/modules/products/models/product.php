@@ -917,7 +917,14 @@ class ProductsModelsProduct extends FSModels
 
     function getproducts_relates($id)
     {
-        $query = "SELECT * FROM ".$this->table_name." WHERE published = 1 and id in (0".$id."0)";
+        if (!$id) return array();
+        // Sanitize: split by comma, keep only valid numeric IDs
+        $ids = array_filter(array_map('trim', explode(',', $id)), function($v) {
+            return $v !== '' && is_numeric($v);
+        });
+        if (empty($ids)) return array();
+        $clean_ids = implode(',', array_map('intval', $ids));
+        $query = "SELECT * FROM ".$this->table_name." WHERE published = 1 AND id IN (".$clean_ids.")";
         global $db;
         $db->query($query);
         $result = $db->getObjectList();
