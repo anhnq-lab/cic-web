@@ -449,20 +449,8 @@ class Templates
                                 //            }
                                 //            
                                 ?>
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-19500468-2"></script>
-            <script>
-                window.dataLayer = window.dataLayer || [];
-
-                function gtag() {
-                    dataLayer.push(arguments);
-                }
-                gtag('js', new Date());
-
-                gtag('config', 'UA-19500468-2');
-            </script>
-
-            <!-- Google tag (gtag.js) -->
+            <?php if (strpos($_SERVER['HTTP_HOST'], 'cic.com.vn') !== false) { ?>
+            <!-- Google tag (gtag.js) - Google Ads Conversion -->
             <script async src="https://www.googletagmanager.com/gtag/js?id=AW-949028790">
             </script>
             <script>
@@ -493,6 +481,7 @@ class Templates
                 })(window, document, 'script', 'dataLayer', 'GTM-M977C95X');
             </script>
             <!-- End Google Tag Manager -->
+            <?php } ?>
 
 
             <!--            <link href='//fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'/>-->
@@ -516,10 +505,12 @@ class Templates
                  * However, the dangerous code has been removed, and the file is now safe to use.
                  */
             </script>
+            <?php if (strpos($_SERVER['HTTP_HOST'], 'cic.com.vn') !== false) { ?>
             <!-- Google Tag Manager (noscript) -->
             <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M977C95X"
                     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!-- End Google Tag Manager (noscript) -->
+            <?php } ?>
 
     <?php
     }
