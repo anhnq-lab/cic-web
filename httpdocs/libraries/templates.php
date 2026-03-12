@@ -496,6 +496,17 @@ class Templates
             <!--            <link rel="stylesheet"-->
             <!--                  href="//cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">-->
 
+            <?php if (strpos($_SERVER['HTTP_HOST'], 'cic.com.vn') !== false) { ?>
+            <!-- Google tag (gtag.js) - GA4 -->
+            <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXK0VW73MT"></script>
+            <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-XXK0VW73MT');
+            </script>
+            <?php } ?>
+
         </head>
 
         <body>
