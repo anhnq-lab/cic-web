@@ -64,10 +64,15 @@ class FS_PDO extends PDO
 
 //		$this->connect();
         $db->pdo->exec('SET CHARACTER SET utf8');
-        $this->query_id = $db->pdo->query($query_string);
+        try {
+            $this->query_id = $db->pdo->query($query_string);
+        } catch (PDOException $e) {
+            // Log the error but don't show it to users
+            error_log('SQL Error: ' . $e->getMessage() . ' | Query: ' . $query_string);
+            $this->query_id = false;
+        }
 
         if (!$db->query_id) {
-            $db->sql_error("Query Error", $query_string);
             return false;
         }
         if (WRITE_LOG_MYSQL) {
